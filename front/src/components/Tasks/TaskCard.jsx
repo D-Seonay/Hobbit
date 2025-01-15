@@ -21,7 +21,7 @@ const TaskCard = ({ task, index, totalTasks }) => {
 
   return (
     <motion.div
-      className={`relative max-w-sm p-6 shadow-lg bg-white bg-opacity-20 backdrop-blur-md border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ${borderRadiusClass()} min-w-[500px]`}
+      className={`relative max-w-xs w-full p-6 shadow-lg bg-white bg-opacity-20 backdrop-blur-md border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ${borderRadiusClass()} w-[330px] sm:min-w-[450px] md:min-w-[600px]`}
       whileHover={{ scale: 1.05 }} // Effet de zoom lors du survol
       whileTap={{ scale: 0.98 }}  // Légère réduction lors du clic
       transition={{ duration: 0.3 }}
