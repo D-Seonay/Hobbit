@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 import { TbPokeball } from "react-icons/tb";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { FaRankingStar } from "react-icons/fa6";
+import Sidebar from "./Sidebar";
 
 
 const Navbar = ({ darkMode, setDarkMode }) => {
@@ -24,7 +25,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   }, [userMenuRef]);
 
   return (
-    <nav className="text-white p-4 sticky top-0 z-50 flex justify-between items-center">
+    <nav className="text-white p-4 sticky top-0 z-50 postion-0 flex justify-between items-center h-24">
         <div className="">
             {/* Logo */}
             <Link to="/" className="text-2xl font-bold">
@@ -33,7 +34,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         </div>
         <div className="mx-auto flex justify-between items-center">
             {/* Menu Normal */}
-            <div className="hidden md:flex space-x-6 backdrop-blur-md bg-gray-800 bg-opacity-50 py-4 px-10 rounded-full dark:bg-gray-700">
+            <div className="hidden md:flex space-x-6 backdrop-blur-md bg-gray-800 bg-opacity-50 py-4 px-10 rounded-full">
             <Link to="/" className="text-xl hover:text-yellow-500 transition-all duration-300">
                 <FaHome className="inline-block mr-2" /> Home
             </Link>
@@ -44,14 +45,15 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             
         </div>
         {/* Theème switcher */}
+        <Sidebar />
         <div className="flex items-center space-x-4">
            {/* Bouton Dark Mode */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 ml-4 rounded-full bg-gray-700 dark:bg-yellow-500 hover:bg-gray-600 transition-colors duration-300"
-        >
-          {darkMode ? <FaSun className="text-yellow-300" /> : <FaMoon />}
-        </button>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2 ml-4 rounded-full dark:bg-yellow-500 transition-colors duration-300"
+          >
+            {darkMode ? <FaSun className="text-yellow-300" /> : <FaMoon />}
+          </button>
 
         {/* Menu Mobile */}
         <button
@@ -82,3 +84,4 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 };
 
 export default Navbar;
+
