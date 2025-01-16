@@ -37,7 +37,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             <Link to="/" className="text-xl hover:text-yellow-500 transition-all duration-300">
                 <FaHome className="inline-block mr-2" /> Home
             </Link>
-            <Link to="/learderboard" className="text-xl hover:text-yellow-500 transition-all duration-300">
+            <Link to="/leaderboard" className="text-xl hover:text-yellow-500 transition-all duration-300">
                 <FaRankingStar className="inline-block mr-2" /> Leaderboard
             </Link>
             </div>

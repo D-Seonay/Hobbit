@@ -21,7 +21,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen">
       <TaskList tasks={tasks} />
       <AddTaskButton onClick={addTask} />
     </div>
