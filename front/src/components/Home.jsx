@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TaskList from './Tasks/TaskList';
 import AddTaskButton from './Tasks/AddTaskButton';
 import { createTask, fetchTasks } from '../api/tasks';
@@ -6,9 +6,11 @@ import { createTask, fetchTasks } from '../api/tasks';
 const App = ({ user, }) => {
   const [tasks, setTasks] = useState({tasks: [], current_page: 1, max_page: 1});
 
-  fetchTasks(user.access_token, 1).then((data) => {
-    setTasks(data);
-  });
+  useEffect(() => {
+    fetchTasks(user.access_token, 1).then((data) => {
+      setTasks(data);
+    });
+  }, []);
 
   const handleTaskCreate = (newTask) => {
     createTask(user.access_token, newTask).then((response) => {
