@@ -23,22 +23,28 @@ const TaskCard = ({ task, index, totalTasks }) => {
     <motion.div
       className={`relative max-w-xs w-full p-6 shadow-lg bg-white bg-opacity-20 backdrop-blur-md border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ${borderRadiusClass()} w-[330px] sm:min-w-[450px] md:min-w-[600px]`}
       whileHover={{ scale: 1.05 }} // Effet de zoom lors du survol
-      whileTap={{ scale: 0.98 }}  // Légère réduction lors du clic
+      whileTap={{ scale: 0.95 }} // Effet de zoom lors du clic
       transition={{ duration: 0.3 }}
     >
       <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
         {task.name}
       </h2>
 
+    <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+        <strong>Description:</strong> {task.description}
+      </p>
+
       <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
         <strong>Quantity:</strong> {task.quantity}
       </p>
-
-      <p className="text-sm text-gray-700 dark:text-gray-300">
-        <strong>Duration:</strong> {task.duration}
+      <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+        <strong>Unit:</strong> {task.unit}
       </p>
 
-      <p className="mt-4 text-gray-600 dark:text-gray-400">{task.description}</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300">
+        <strong>Frequency:</strong> {task.frequency}
+      </p>
+
     </motion.div>
   );
 };

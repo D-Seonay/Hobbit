@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuth } from "react-oidc-context";
+
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const auth = useAuth();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -143,6 +146,9 @@ const Sidebar = () => {
                 </div>
               </div>
             </div>
+            <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg shadow hover:bg-blue-700 transition" onClick={auth.signoutRedirect}>
+              Déconnexion
+            </button>
           </section>
         </div>
       </motion.div>

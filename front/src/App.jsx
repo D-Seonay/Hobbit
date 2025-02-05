@@ -8,6 +8,8 @@ import Sidebar from "./components/Sidebar";
 import Loading from "./components/Loading/Loading";
 import Error from "./components/Error";
 import { useAuth } from "react-oidc-context";
+import TaskBoard from "./components/Tasks/TaskBoard";
+import TaskDetailsPage from "./components/Tasks/TaskDetailsPage";
 
 
 
@@ -43,45 +45,36 @@ const App = () => {
   }
 
   if (auth.error) {
-      // return <div className="text-white">Oops... {auth.error.message}</div>;
       return <Error message={auth.error.message} />;
   }
   if (auth.isAuthenticated) {
     return (
-      <div>
-        <h1>Welcome {auth.user.profile.name}</h1>
-        <button onClick={auth.signOut}>Sign out</button>
-      </div>
+      <main
+      className={`min-h-screen ${
+        darkMode
+          ? "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white"
+          : "bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900"
+      } transition-colors duration-300`}
+    >
+
+      <Router>
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} toggleSidebar={toggleSidebar} />
+
+        <div className="container mx-auto">
+          <Routes>
+            <Route path="/" element={<Home user={auth.user}/>} />
+            <Route path="/task/:id" element={<TaskDetailsPage user={auth.user}/>} />
+            <Route path="/taskboard" element={<TaskBoard />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/missions" element={<h1>Historique des missions</h1>} />
+            <Route path="/settings" element={<Parametre />} />"
+          </Routes>
+        </div>
+      </Router>
+    </main>
     );
   }
   return <button className="text-white" onClick={() => void auth.signinRedirect()}>Log in</button>;
 }
 
 export default App;
-//   return (
-//     <main
-//       className={`min-h-screen ${
-//         darkMode
-//           ? "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white"
-//           : "bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900"
-//       } transition-colors duration-300`}
-//     >
-
-//       <Router>
-//         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} toggleSidebar={toggleSidebar} />
-//         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-
-//         <div className="container mx-auto pt-16">
-//           <Routes>
-//             <Route path="/" element={<Home />} />
-//             <Route path="/leaderboard" element={<Leaderboard />} />
-//             <Route path="/missions" element={<h1>Historique des missions</h1>} />
-//             <Route path="/settings" element={<Parametre />} />"
-//           </Routes>
-//         </div>
-//       </Router>
-//     </main>
-//   );
-// };
-
-// export default App;

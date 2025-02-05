@@ -70,10 +70,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <Link to="/" className="text-xl hover:text-yellow-500 transition-all duration-300">
             <FaHome className="inline-block mr-2" /> Home
           </Link>
-          <Link to="/pokemons" className="text-xl hover:text-yellow-500 transition-all duration-300">
+          <Link to="/#" className="text-xl hover:text-yellow-500 transition-all duration-300">
             <TbPokeball className="inline-block mr-2" /> Pokémon
           </Link>
-          <Link to="/pokemondle" className="text-xl hover:text-yellow-500 transition-all duration-300">
+          <Link to="/#" className="text-xl hover:text-yellow-500 transition-all duration-300">
             Pokédle
             <TbPokeball className="inline-block ml-2" />
           </Link>

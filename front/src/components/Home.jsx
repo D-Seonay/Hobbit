@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
 import TaskList from './Tasks/TaskList';
 import AddTaskButton from './Tasks/AddTaskButton';
+import { createTask, fetchTasks } from '../api/tasks';
 
-const App = () => {
-  const [tasks, setTasks] = useState([
-    { name: 'Create API Documentation', quantity: '5 endpoints', duration: '2 hours', description: 'Write detailed documentation for the REST API.' },
-    { name: 'UI Design', quantity: '4 screens', duration: '3 hours', description: 'Design responsive UI for task management application.' },
-    { name: 'Database Setup', quantity: '1 database', duration: '1 hour', description: 'Setup the initial database schema for the project.' },
-  ]);
+const App = ({ user, }) => {
+  const [tasks, setTasks] = useState({tasks: [], current_page: 1, max_page: 1});
 
-  const addTask = () => {
-    // Logique pour ajouter une nouvelle tâche
-    const newTask = {
-      name: 'New Task',
-      quantity: '1 unit',
-      duration: '30 minutes',
-      description: 'Description of the new task.',
-    };
-    setTasks([...tasks, newTask]);
-  };
+  fetchTasks(user.access_token, 1).then((data) => {
+    setTasks(data);
+  });
+
+  const handleTaskCreate = (newTask) => {
+    createTask(user.access_token, newTask).then((response) => {
+      setTasks({tasks: [...tasks, newTask], current_page: tasks.current_page, max_page: tasks.max_page});
+    });
+  }
+
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <TaskList tasks={tasks} />
-      <AddTaskButton onClick={addTask} />
+      <AddTaskButton onTaskCreate={handleTaskCreate} />
     </div>
   );
 };
