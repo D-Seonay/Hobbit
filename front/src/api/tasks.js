@@ -48,8 +48,8 @@ export const GetBuy1KXPLink = async (accessToken) => {
 				"Authorization": "Bearer " + accessToken
 			},
 			body: JSON.stringify({
-				successUrl: "http://localhost:5173/success",
-				cancelUrl: "http://localhost:5173/cancel"
+				successUrl: "https://hobbit-one.vercel.app/success",
+				cancelUrl: "https://hobbit-one.vercel.app/cancel"
 			})
 		}
 	);
