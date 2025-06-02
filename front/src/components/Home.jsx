@@ -21,7 +21,14 @@ const App = ({ user, }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <TaskList tasks={tasks} />
+      {tasks.tasks.length !== 0 && (
+        console.log(tasks),
+        <TaskList tasks={tasks} />
+      )}
+      {tasks.tasks.length === 0 && (  
+        <p>Aucune tâche à afficher</p>
+      )}
+
       <AddTaskButton onTaskCreate={handleTaskCreate} />
     </div>
   );

@@ -11,6 +11,7 @@ import Error from "./components/Error";
 import { useAuth } from "react-oidc-context";
 import TaskBoard from "./components/Tasks/TaskBoard";
 import TaskDetailsPage from "./components/Tasks/TaskDetailsPage";
+import Success from "./page/Success";
 
 
 
@@ -69,6 +70,8 @@ const App = () => {
 							<Route path="/leaderboard" element={<Leaderboard />} />
 							<Route path="/missions" element={<h1>Historique des missions</h1>} />
 							<Route path="/settings" element={<Parametre />} />
+							<Route path="/error" element={<Error message="An error occurred." />} />
+							<Route path="/success" element={<Success />} />
 						</Routes>
 					</div>
 				</Router>
