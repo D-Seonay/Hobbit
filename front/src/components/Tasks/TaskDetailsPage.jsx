@@ -5,7 +5,7 @@ import { useAuth } from "react-oidc-context"
 
 const TaskDetailsPage = ({ user, }) => {
 	const { id } = useParams(); // Récupérer l'id de la tâche depuis l'URL
-	const [task, setTask] = useState([]);
+	const [task, setTask] = useState(null);
 	const navigate = useNavigate();
 
 	console.log(user);
@@ -18,7 +18,7 @@ const TaskDetailsPage = ({ user, }) => {
 		return <p className="text-center text-red-500">Tâche non trouvée !</p>;
 	}
 
-	return (
+	return !task ? (<div>Loading...</div>) : (
 		<div className="min-h-screen flex flex-col items-center justify-center p-4">
 			<div className="max-w-lg w-full bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
 				<h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{task.name}</h2>
