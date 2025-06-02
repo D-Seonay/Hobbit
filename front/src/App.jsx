@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
 import Parametre from "./components/Parametre";
 import Sidebar from "./components/Sidebar";
+import Profile from "./components/Profile";
 import Loading from "./components/Loading/Loading";
 import Error from "./components/Error";
 import { useAuth } from "react-oidc-context";
