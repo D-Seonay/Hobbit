@@ -21,6 +21,23 @@ export const createScheduleExpression = (value, unit) => {
 	return `rate(${value} ${unit})`;
 }
 
+export const fetchProfile = async (accessToken) => {
+	const response = await fetch(`${API_BASE_URL}/api/v1/auth/me`, {
+		method: "GET",
+		mode: "cors",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Bearer " + accessToken
+		},
+	});
+
+	if (!response.ok) {
+		throw new Error("Erreur lors du chargement du profil");
+	}
+
+	return response.json();
+}
+
 export const GetBuy1KXPLink = async (accessToken) => {
 	const response = await fetch(`${API_BASE_URL}/api/v1/stripe/checkout/create`,
 		{

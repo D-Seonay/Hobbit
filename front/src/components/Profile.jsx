@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TaskList from './Tasks/TaskList';
 import AddTaskButton from './Tasks/AddTaskButton';
-import { /*fetchProfile,*/ GetBuy1KXPLink } from '../api/tasks';
+import { fetchProfile, GetBuy1KXPLink } from '../api/tasks';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const App = ({ user, }) => {
@@ -10,9 +10,9 @@ const App = ({ user, }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		//fetchProfile(user.access_token).then((data) => {
-		//	setTasks(data);
-		//});
+		fetchProfile(user.access_token).then((data) => {
+			setProfile(data);
+		});
 	}, []);
 
 	useEffect(() => {
@@ -28,7 +28,10 @@ const App = ({ user, }) => {
 	}
 
 	return (
-		<button onClick={buy1KXP}>Buy 1KXP</button>
+		<div>
+			<div>{profile == null ? "" : "Rank: " + profile.rank}</div>
+			<button onClick={buy1KXP}>Buy 1KXP</button>
+		</div>
 	);
 };
 
