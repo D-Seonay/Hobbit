@@ -14,67 +14,67 @@ import TaskDetailsPage from "./components/Tasks/TaskDetailsPage";
 
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const [darkMode, setDarkMode] = useState(() => localStorage.getItem("theme") === "dark");
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+	const toggleSidebar = () => {
+		setIsSidebarOpen(!isSidebarOpen);
+	};
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+	useEffect(() => {
+		if (darkMode) {
+			document.documentElement.classList.add("dark");
+			localStorage.setItem("theme", "dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+			localStorage.setItem("theme", "light");
+		}
+	}, [darkMode]);
 
-  const auth = useAuth();
+	const auth = useAuth();
 
-  switch (auth.activeNavigator) {
-    case "signinSilent":
-        return <div>Signing you in...</div>;
-    case "signoutRedirect":
-        return <div>Signing you out...</div>;
-  }
+	switch (auth.activeNavigator) {
+		case "signinSilent":
+			return <div>Signing you in...</div>;
+		case "signoutRedirect":
+			return <div>Signing you out...</div>;
+	}
 
-  if (auth.isLoading) {
-      return <Loading />;
-  }
+	if (auth.isLoading) {
+		return <Loading />;
+	}
 
-  if (auth.error) {
-      return <Error message={auth.error.message} />;
-  }
-  if (auth.isAuthenticated) {
-    return (
-      <main
-      className={`min-h-screen ${
-        darkMode
-          ? "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white"
-          : "bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900"
-      } transition-colors duration-300`}
-    >
+	if (auth.error) {
+		return <Error message={auth.error.message} />;
+	}
+	if (auth.isAuthenticated) {
+		return (
+			<main
+				className={`min-h-screen ${darkMode
+					? "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white"
+					: "bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-900"
+					} transition-colors duration-300`}
+			>
 
-      <Router>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} toggleSidebar={toggleSidebar} />
+				<Router>
+					<Navbar darkMode={darkMode} setDarkMode={setDarkMode} toggleSidebar={toggleSidebar} />
 
-        <div className="container mx-auto">
-          <Routes>
-            <Route path="/" element={<Home user={auth.user}/>} />
-            <Route path="/task/:id" element={<TaskDetailsPage user={auth.user}/>} />
-            <Route path="/taskboard" element={<TaskBoard />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/missions" element={<h1>Historique des missions</h1>} />
-            <Route path="/settings" element={<Parametre />} />"
-          </Routes>
-        </div>
-      </Router>
-    </main>
-    );
-  }
-  return <button className="text-white" onClick={() => void auth.signinRedirect()}>Log in</button>;
+					<div className="container mx-auto">
+						<Routes>
+							<Route path="/" element={<Home user={auth.user} />} />
+							<Route path="/profile" element={<Profile user={auth.user} />} />
+							<Route path="/task/:id" element={<TaskDetailsPage user={auth.user} />} />
+							<Route path="/taskboard" element={<TaskBoard />} />
+							<Route path="/leaderboard" element={<Leaderboard />} />
+							<Route path="/missions" element={<h1>Historique des missions</h1>} />
+							<Route path="/settings" element={<Parametre />} />
+						</Routes>
+					</div>
+				</Router>
+			</main>
+		);
+	}
+	return <button className="text-white" onClick={() => void auth.signinRedirect()}>Log in</button>;
 }
 
 export default App;
